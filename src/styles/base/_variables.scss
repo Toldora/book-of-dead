@@ -44,11 +44,19 @@
   --z-modal-overlay: 14;
   --z-modal: 9;
   --z-app-navbar: 7;
-  --z-wheel-btn: 4;
-  --z-wheel: 3;
+  --z-wheel-btn: 6;
+  --z-wheel: 4;
   --z-character-decor: 2;
   --z-default: 1;
   --z-hidden: -1;
+
+  @media (orientation: portrait) {
+    --z-chest-decor: 2;
+  }
+
+  @media (orientation: landscape) {
+    --z-chest-decor: 5;
+  }
 
   // Text variables
   /* stylelint-disable max-line-length */
@@ -131,9 +139,5 @@
 
   @media (orientation: landscape) {
     --wheel-size-landscape: #{min(32vw, vh(56))};
-
-    // @include respond-above(xmedium) {
-    //   --wheel-size-landscape: #{min(32vw, vh(66))};
-    // }
   }
 }

@@ -15,18 +15,12 @@
   align-items: center;
   justify-content: center;
 
-  // @media (orientation: portrait) {
-  // padding-top: to-rem(80);
-  // padding-bottom: to-rem(40);
-  // }
+  @media (orientation: landscape) {
+    padding-top: to-rem(40);
 
-  // @media (orientation: landscape) {
-  //   padding-top: to-rem(120);
-  // }
-
-  @include respond-above(medium) {
-    padding-top: to-rem(120);
-    // padding-bottom: to-rem(60);
+    @include respond-above(medium) {
+      padding-top: to-rem(60);
+    }
   }
 }
 
@@ -37,7 +31,14 @@
   max-width: calc(
     var(--wheel-size-portrait, var(--wheel-size-landscape)) * 0.85
   );
-  margin-bottom: vh(3);
+
+  @media (orientation: portrait) {
+    margin-bottom: vh(3);
+  }
+
+  @media (orientation: landscape) {
+    transform: translateY(20%);
+  }
 }
 
 .main__cta-btn {
@@ -71,7 +72,7 @@
   @media (orientation: landscape) {
     @include respond-above(medium) {
       height: vh(10);
-      font-size: vh(5);
+      font-size: min(vh(5), to-rem(37));
     }
   }
 
@@ -99,35 +100,35 @@
 .main__cta-btn-icon {
   margin-right: to-rem(18);
   transition: transform var(--hover-transition);
+
+  @media (orientation: landscape) {
+    @include respond-above(medium) {
+      height: auto;
+      width: min(vh(7), to-rem(60));
+    }
+  }
 }
 
 .main__character-decor {
   --aspect-ratio: 0.7;
 
   position: absolute;
-  right: 0;
-  bottom: 0;
-  transform: translateX(50%);
   z-index: var(--z-character-decor);
+  bottom: 0;
   aspect-ratio: var(--aspect-ratio);
 
   @include bg-image('/img/decor/character-decor');
 
   @media (orientation: portrait) {
+    right: 0;
     width: min(76vw, vh(64) * var(--aspect-ratio));
+    transform: translateX(50%);
   }
 
   @media (orientation: landscape) {
-    position: absolute;
-    top: min(30% + var(--wheel-size-landscape) / 2, 62%);
     left: calc(50% + var(--wheel-size-landscape) / 2);
-    transform: translate(-10%, -50%);
-    width: 30vw;
-    max-width: var(--wheel-size-landscape);
-
-    @include respond-above(xmedium) {
-      transform: translate(0, -50%);
-    }
+    width: min(26.5vw, vh(70.5) * var(--aspect-ratio));
+    transform: translateX(-20%);
   }
 }
 
@@ -135,10 +136,8 @@
   --aspect-ratio: 1.19;
 
   position: absolute;
-  left: 0;
   bottom: 0;
-  transform: translate(20%, 6%);
-  z-index: var(--z-character-decor);
+  z-index: var(--z-chest-decor);
   aspect-ratio: var(--aspect-ratio);
   filter: drop-shadow(
     -#{to-rem(15)} to-rem(15) to-rem(15) rgba(var(--col-dark-tone-ink-rgb), 50%)
@@ -147,7 +146,15 @@
   @include bg-image('/img/decor/chest-decor');
 
   @media (orientation: portrait) {
+    left: 0;
     width: min(54vw, vh(24.5) * var(--aspect-ratio));
+    transform: translate(20%, 6%);
+  }
+
+  @media (orientation: landscape) {
+    left: calc(50% - var(--wheel-size-landscape));
+    width: min(30vw, vh(46) * var(--aspect-ratio));
+    transform: translateX(-12%);
   }
 }
 
@@ -155,8 +162,6 @@
   --aspect-ratio: 1;
 
   position: absolute;
-  top: 9%;
-  right: 2%;
   transform: rotate(17deg);
   z-index: var(--z-default);
   aspect-ratio: var(--aspect-ratio);
@@ -167,7 +172,16 @@
   @include bg-image('/img/decor/bag-decor');
 
   @media (orientation: portrait) {
+    top: 9%;
+    right: 2%;
     width: min(22vw, vh(15) * var(--aspect-ratio));
+  }
+
+  @media (orientation: landscape) {
+    top: 2%;
+    left: calc(50% + var(--wheel-size-landscape));
+    width: min(15vw, vh(22) * var(--aspect-ratio));
+    transform: translateX(-70%);
   }
 }
 
@@ -175,8 +189,6 @@
   --aspect-ratio: 1;
 
   position: absolute;
-  top: 9%;
-  left: 6%;
   z-index: var(--z-default);
   aspect-ratio: var(--aspect-ratio);
   filter: drop-shadow(
@@ -186,7 +198,15 @@
   @include bg-image('/img/decor/book-decor');
 
   @media (orientation: portrait) {
+    top: 9%;
+    left: 6%;
     width: min(15vw, vh(8.5) * var(--aspect-ratio));
+  }
+
+  @media (orientation: landscape) {
+    top: 20%;
+    left: calc(50% - var(--wheel-size-landscape));
+    width: min(8.2vw, vh(14.6) * var(--aspect-ratio));
   }
 }
 
@@ -194,8 +214,6 @@
   --aspect-ratio: 1;
 
   position: absolute;
-  top: 60%;
-  left: 0;
   transform: rotate(26deg);
   z-index: var(--z-default);
   aspect-ratio: var(--aspect-ratio);
@@ -206,6 +224,18 @@
   @include bg-image('/img/decor/rock-decor');
 
   @media (orientation: portrait) {
+    top: 60%;
+    left: 0;
     width: min(15vw, vh(11) * var(--aspect-ratio));
+  }
+
+  @media (orientation: landscape) {
+    top: 50%;
+    left: 4%;
+    width: min(11vw, vh(18) * var(--aspect-ratio));
+
+    @include respond-above(xmedium) {
+      left: 0;
+    }
   }
 }
