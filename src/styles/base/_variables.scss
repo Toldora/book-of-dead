@@ -14,19 +14,8 @@
 
   --col-tibetan-yellow: #{$col-tibetan-yellow};
   --col-nuclear-fallout: #{$col-nuclear-fallout};
-  --col-red: #{$col-red};
-  --col-burtuqali-orange: #{$col-burtuqali-orange};
   --col-pantone: #{$col-pantone};
   --col-pantone-rgb: #{$col-pantone-rgb};
-  --col-irradiated-green: #{$col-irradiated-green};
-  --col-pcb-green: #{$col-pcb-green};
-  --col-algal-fuel: #{$col-algal-fuel};
-  --col-algal-fuel-rgb: #{$col-algal-fuel-rgb};
-  --col-gordons-green: #{$col-gordons-green};
-  --col-kuro-green: #{$col-kuro-green};
-  --col-alpine-salamander: #{$col-alpine-salamander};
-  --col-alpine-salamander-rgb: #{$col-alpine-salamander-rgb};
-  --col-rich-olive: #{$col-rich-olive};
   --col-vermilion-cinnabar: #{$col-vermilion-cinnabar};
   --col-radiant-silver: #{$col-radiant-silver};
   --col-bilberry: #{$col-bilberry};
@@ -39,11 +28,14 @@
   --col-dwarf-fortress: #{$col-dwarf-fortress};
   --col-dark-tone-ink: #{$col-dark-tone-ink};
   --col-dark-tone-ink-rgb: #{$col-dark-tone-ink-rgb};
+  --col-black-chestnut-oak: #{$col-black-chestnut-oak};
+  --col-cacodemon-red: #{$col-cacodemon-red};
 
   // Z-indexes
   --z-modal-overlay: 14;
   --z-modal: 9;
-  --z-app-navbar: 7;
+  --z-app-navbar: 8;
+  --z-bonus-section: 7;
   --z-wheel-btn: 6;
   --z-wheel: 4;
   --z-character-decor: 2;

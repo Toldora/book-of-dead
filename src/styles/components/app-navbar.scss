@@ -10,7 +10,6 @@
   align-content: center;
   justify-content: center;
   background-color: transparent;
-  color: var(--col-red);
 
   @media (orientation: portrait) {
     max-width: calc(to-rem(440) + var(--container-side-padding) * 2);
