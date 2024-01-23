@@ -21,7 +21,7 @@
 }
 
 .wheel {
-  --btn-size: 25%;
+  --btn-size: 15%;
 
   position: relative;
   z-index: var(--z-wheel);
@@ -32,11 +32,7 @@
   cursor: default;
 
   @media (orientation: landscape) {
-    position: absolute;
-    top: calc(45% - var(--wheel-size-landscape) / 2);
-    left: calc(50% - var(--wheel-size-landscape) / 2);
     height: 0;
-    flex-grow: 1;
     max-width: var(--wheel-size-landscape);
     padding-bottom: var(--wheel-size-landscape);
   }
@@ -49,18 +45,8 @@
   @include hover {
     cursor: pointer;
 
-    .wheel__btn,
-    .wheel__btn-border {
-      transform: translate(-50%, -50%) scale(1.15);
-    }
-
     .wheel-stage-3 & {
       cursor: default;
-
-      .wheel__btn,
-      .wheel__btn-border {
-        transform: translate(-50%, -50%) scale(1);
-      }
     }
   }
 }
@@ -72,6 +58,7 @@
 .wheel__main {
   @include bg-image('/img/wheel/main', true);
 
+  background-size: 96%;
   animation-duration: 2s;
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
@@ -102,15 +89,15 @@
 .wheel__backdrop {
   @include bg-image('/img/wheel/backdrop', true);
 
-  background-size: 81%;
-  background-position: center 56%;
+  background-size: 74%;
+  background-position: center 55%;
 }
 
 .wheel__winner-frame {
-  width: 34%;
-  height: 44%;
+  width: 32%;
+  height: 43%;
   position: absolute;
-  top: 6%;
+  top: 7%;
   left: 50%;
   transform: translateX(-50%);
   filter: drop-shadow(
@@ -124,10 +111,10 @@
 }
 
 .wheel__pointer {
-  width: 12%;
-  height: 12%;
+  width: 11%;
+  height: 11%;
   position: absolute;
-  top: 2.5%;
+  top: 4%;
   left: 50%;
   transform: translateX(-50%);
   background-repeat: no-repeat;
@@ -137,17 +124,6 @@
   @include bg-img-webp('/img/wheel/pointer', true);
 }
 
-.wheel__btn-border {
-  width: calc(var(--btn-size) + 5.5%);
-  height: calc(var(--btn-size) + 5.5%);
-
-  @include bg-image('/img/wheel/button-border', true);
-
-  transform-origin: center;
-  transition: transform var(--hover-transition);
-  mix-blend-mode: multiply;
-}
-
 .wheel__btn {
   width: var(--btn-size);
   height: var(--btn-size);
@@ -155,7 +131,7 @@
   @include bg-image('/img/wheel/button', true);
 
   transform-origin: center;
-  transition: transform var(--hover-transition);
+  // transition: transform var(--hover-transition);
 }
 
 @keyframes wheel-shake-1 {

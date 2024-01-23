@@ -1,62 +1,93 @@
+@mixin bg-image($path) {
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center;
+  user-select: none;
+
+  @include bg-img-webp($path, true);
+}
+
 .main {
   position: relative;
-  height: calc(100% - var(--app-navbar-height));
+  height: vh(100);
   display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
 
-  @media (orientation: portrait) {
-    flex-direction: column;
+  // @media (orientation: portrait) {
+  // padding-top: to-rem(80);
+  // padding-bottom: to-rem(40);
+  // }
+
+  // @media (orientation: landscape) {
+  //   padding-top: to-rem(120);
+  // }
+
+  @include respond-above(medium) {
+    padding-top: to-rem(120);
+    // padding-bottom: to-rem(60);
   }
+}
+
+.main__wheel-logo {
+  position: relative;
+  z-index: var(--z-wheel);
+  width: 100%;
+  max-width: calc(
+    var(--wheel-size-portrait, var(--wheel-size-landscape)) * 0.85
+  );
+  margin-bottom: vh(3);
 }
 
 .main__cta-btn {
   position: relative;
   z-index: var(--z-wheel-btn);
-  height: to-rem(60);
+  height: to-rem(50);
   width: 100%;
   max-width: min(
     var(--wheel-size-portrait, var(--wheel-size-landscape)),
-    to-rem(400)
+    to-rem(460)
   );
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: to-rem(12);
-  border: to-rem(2) solid var(--col-total-white);
+  border: to-rem(1) solid var(--col-total-white);
   background-image: linear-gradient(
     to bottom,
-    var(--col-irradiated-green) 0%,
-    var(--col-pcb-green) 100%
+    var(--col-bright-red) 0%,
+    var(--col-dwarf-fortress) 100%
   );
-  box-shadow: 0 to-rem(4) to-rem(25) 0 var(--col-pantone);
-  font-size: to-rem(24);
+  box-shadow: 0 to-rem(4) to-rem(25) 0 rgba(var(--col-little-ladybug-rgb), 60%);
+  font-size: to-rem(16);
   text-transform: uppercase;
   cursor: default;
-  transform: translateY(-50%);
+  transform: translateY(-20%);
   transition: box-shadow var(--hover-transition),
     transform var(--hover-transition);
 
   @media (orientation: landscape) {
-    position: absolute;
-    top: calc(45% + var(--wheel-size-landscape) / 2);
-    left: 50%;
-    transform: translate(-50%, -50%);
-
     @include respond-above(medium) {
+      height: vh(10);
+      font-size: vh(5);
+    }
+  }
+
+  @media (orientation: portrait) {
+    @include respond-above(tablet) {
       height: to-rem(80);
+      font-size: to-rem(30);
     }
   }
 
   @include hover {
     body:not(.wheel-stage-3) & {
-      box-shadow: 0 to-rem(4) to-rem(40) 0 var(--col-pantone);
+      box-shadow: 0 to-rem(4) to-rem(40) 0
+        rgba(var(--col-little-ladybug-rgb), 60%);
       cursor: pointer;
-      transform: translateY(-50%) scale(1.1);
-
-      @include respond-above(tablet) {
-        transform: translate(-50%, -50%) scale(1.1);
-      }
+      transform: translateY(-20%) scale(1.1);
 
       .main__cta-btn-icon {
         transform: rotate(180deg);
@@ -70,15 +101,20 @@
   transition: transform var(--hover-transition);
 }
 
-.main__maskot-decor {
-  position: relative;
-  z-index: var(--z-maskot-decor);
-  user-select: none;
+.main__character-decor {
+  --aspect-ratio: 0.7;
+
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  transform: translateX(50%);
+  z-index: var(--z-character-decor);
+  aspect-ratio: var(--aspect-ratio);
+
+  @include bg-image('/img/decor/character-decor');
 
   @media (orientation: portrait) {
-    width: max(vh(30), to-rem(217));
-    margin-top: auto;
-    transform: translateY(min(vh(3) * -1, -20%));
+    width: min(76vw, vh(64) * var(--aspect-ratio));
   }
 
   @media (orientation: landscape) {
@@ -92,5 +128,84 @@
     @include respond-above(xmedium) {
       transform: translate(0, -50%);
     }
+  }
+}
+
+.main__chest-decor {
+  --aspect-ratio: 1.19;
+
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  transform: translate(20%, 6%);
+  z-index: var(--z-character-decor);
+  aspect-ratio: var(--aspect-ratio);
+  filter: drop-shadow(
+    -#{to-rem(15)} to-rem(15) to-rem(15) rgba(var(--col-dark-tone-ink-rgb), 50%)
+  );
+
+  @include bg-image('/img/decor/chest-decor');
+
+  @media (orientation: portrait) {
+    width: min(54vw, vh(24.5) * var(--aspect-ratio));
+  }
+}
+
+.main__bag-decor {
+  --aspect-ratio: 1;
+
+  position: absolute;
+  top: 9%;
+  right: 2%;
+  transform: rotate(17deg);
+  z-index: var(--z-default);
+  aspect-ratio: var(--aspect-ratio);
+  filter: drop-shadow(
+    to-rem(8) to-rem(11) to-rem(22) rgba(var(--col-pantone-rgb), 60%)
+  );
+
+  @include bg-image('/img/decor/bag-decor');
+
+  @media (orientation: portrait) {
+    width: min(22vw, vh(15) * var(--aspect-ratio));
+  }
+}
+
+.main__book-decor {
+  --aspect-ratio: 1;
+
+  position: absolute;
+  top: 9%;
+  left: 6%;
+  z-index: var(--z-default);
+  aspect-ratio: var(--aspect-ratio);
+  filter: drop-shadow(
+    to-rem(21) to-rem(30) to-rem(28) rgba(var(--col-pantone-rgb), 60%)
+  );
+
+  @include bg-image('/img/decor/book-decor');
+
+  @media (orientation: portrait) {
+    width: min(15vw, vh(8.5) * var(--aspect-ratio));
+  }
+}
+
+.main__rock-decor {
+  --aspect-ratio: 1;
+
+  position: absolute;
+  top: 60%;
+  left: 0;
+  transform: rotate(26deg);
+  z-index: var(--z-default);
+  aspect-ratio: var(--aspect-ratio);
+  filter: drop-shadow(
+    to-rem(21) to-rem(30) to-rem(28) rgba(var(--col-pantone-rgb), 60%)
+  );
+
+  @include bg-image('/img/decor/rock-decor');
+
+  @media (orientation: portrait) {
+    width: min(15vw, vh(11) * var(--aspect-ratio));
   }
 }

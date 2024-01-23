@@ -17,6 +17,7 @@
   --col-red: #{$col-red};
   --col-burtuqali-orange: #{$col-burtuqali-orange};
   --col-pantone: #{$col-pantone};
+  --col-pantone-rgb: #{$col-pantone-rgb};
   --col-irradiated-green: #{$col-irradiated-green};
   --col-pcb-green: #{$col-pcb-green};
   --col-algal-fuel: #{$col-algal-fuel};
@@ -32,6 +33,12 @@
   --col-island-palm: #{$col-island-palm};
   --col-super-black: #{$col-super-black};
   --col-super-black-rgb: #{$col-super-black-rgb};
+  --col-little-ladybug: #{$col-little-ladybug};
+  --col-little-ladybug-rgb: #{$col-little-ladybug-rgb};
+  --col-bright-red: #{$col-bright-red};
+  --col-dwarf-fortress: #{$col-dwarf-fortress};
+  --col-dark-tone-ink: #{$col-dark-tone-ink};
+  --col-dark-tone-ink-rgb: #{$col-dark-tone-ink-rgb};
 
   // Z-indexes
   --z-modal-overlay: 14;
@@ -39,7 +46,7 @@
   --z-app-navbar: 7;
   --z-wheel-btn: 4;
   --z-wheel: 3;
-  --z-maskot-decor: 2;
+  --z-character-decor: 2;
   --z-default: 1;
   --z-hidden: -1;
 
@@ -115,22 +122,18 @@
 
   // Wheel
   @media (orientation: portrait) {
-    --wheel-size-portrait: #{min(90vw, vh(48))};
-
-    @include respond-above(small) {
-      --wheel-size-portrait: #{min(82vw, vh(55))};
-    }
+    --wheel-size-portrait: #{min(75vw, vh(48))};
 
     @include respond-above(tablet) {
-      --wheel-size-portrait: #{min(85vw, vh(46))};
+      --wheel-size-portrait: #{min(85vw, vh(54))};
     }
   }
 
   @media (orientation: landscape) {
-    --wheel-size-landscape: #{min(46vw, vh(74))};
+    --wheel-size-landscape: #{min(32vw, vh(56))};
 
-    @include respond-above(xmedium) {
-      --wheel-size-landscape: #{min(46vw, vh(66))};
-    }
+    // @include respond-above(xmedium) {
+    //   --wheel-size-landscape: #{min(32vw, vh(66))};
+    // }
   }
 }
